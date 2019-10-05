@@ -6,7 +6,7 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="" class="simple-text">
+                <a href="{{ url('/admin/dashboard') }}" class="simple-text">
                     Admin Dashboard
                 </a>
             </div>
@@ -48,7 +48,7 @@
 
     <div class="main-panel">
         
-        @include('layouts.navbar')
+        @include('layouts.admin_navbar')
 
         <div class="content">
             <div class="container-fluid">

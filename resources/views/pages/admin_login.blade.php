@@ -34,7 +34,7 @@
                                 {{ session('msg') }}
                             </div>
                         @endif
-
+                        
                         <form method="post" action="{{ route('admin.login') }}">
                             @csrf
                             <div class="form-group">

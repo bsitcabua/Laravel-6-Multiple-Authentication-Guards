@@ -7,16 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:admin');
-    // }
+    public function __construct()
+    {
+        // Applied to all methods except logout()
+        $this->middleware('guest:admin')->except('logout');
+    }
 
     public function index()
-    {
-        if(auth()->guard('admin')->check())
-            return redirect('/admin');
-        
+    {   
         return view('pages.admin_login');
     }
 
@@ -45,13 +43,10 @@ class AdminUserController extends Controller
 
     public function logout()
     {
-        // Auth::logout();
+        // Destroy Admin Auth
         auth()->guard('admin')->logout();
-        
-        // session message
-        // session()->flash('msg', 'You have been logged out');
 
+        // Redirect
         return redirect('/admin/login')->with('msg', 'You have been logged out');
-        // ->route('admin.logout') 
     }
 }

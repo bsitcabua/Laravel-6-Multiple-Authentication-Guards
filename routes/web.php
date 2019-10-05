@@ -15,9 +15,18 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/login', 'AdminUserController@store')->name('admin.login');
 });
 
-Route::get('/login', function(){
-    return view('pages.user_login');
-})->name('login');
+// User
 
+Route::get('/', function(){
+    return redirect('/login');
+});
+Route::get('/login', 'SessionController@index')->name('login');
+Route::post('/login', 'SessionController@store')->name('login.store');
+Route::get('/logout','SessionController@logout')->name('logout');
+
+Route::get('/signup', 'RegistrationController@index');
+Route::post('/signup', 'RegistrationController@store')->name('signup.store');
+
+Route::get('/dashboard', 'Dashboard@index');
 
 

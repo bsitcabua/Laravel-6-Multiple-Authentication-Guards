@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                User Login
+                User Registration
             </a>
         </div>
     </div>
@@ -16,7 +16,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Sign In</strong></h3>
+                        <h3 class="panel-title"><strong>Sign Up</strong></h3>
                     </div>
 
                     <div class="panel-body">
@@ -34,14 +34,23 @@
                                 {{ session('msg') }}
                             </div>
                         @endif
-                        {{-- {{auth()->user()->name}} --}}
-                        <form method="post" action="{{ route('login.store') }}">
 
+                        <form method="post" action="{{ route('signup.store') }}">
                             @csrf
 
                             <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" id="name" placeholder="Name" value="{{ old('name') }}" class="form-control border-input">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="text" name="email" id="email" value="{{ old('email') }}" placeholder="Email" class="form-control border-input">
+                                <input type="text" name="email" id="email" placeholder="Email" value="{{ old('email') }}" class="form-control border-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Address:</label>
+                                <textarea type="text" name="address" id="address" placeholder="Address" class="form-control border-input">{{ old('address') }}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -50,8 +59,12 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-primary" type="submit">Sign In</button>
-                                <a href="{{ url('/signup') }}" class="btn btn-secondary pull-right" type="button">Sign Up</a>
+                                    <label for="password_confirmation">Confirm Password:</label>
+                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="password_confirmation" class="form-control border-input">
+                                </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Sign Up</button>
                             </div>
 
                         </form>

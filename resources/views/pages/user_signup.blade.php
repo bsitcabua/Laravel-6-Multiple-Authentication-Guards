@@ -1,78 +1,100 @@
-@extends('layouts.master')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-@section('content')
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                User Registration
-            </a>
-        </div>
-    </div>
-</nav>
-<div class="wrapper">
-    <div class="container" style="margin-top: 50px">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Sign Up</strong></h3>
-                    </div>
+    <title>Laravel 6 Multiple Authentication Guards</title>
 
-                    <div class="panel-body">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
 
-                        @if($errors->any())
-                            <div class="alert alert-danger" role="alert">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </div>
-                        @endif
+    <link href="{{ url('assets/css/bootstrap.min.css') }}" rel="stylesheet"/>
 
-                        @if(session('msg'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('msg') }}
-                            </div>
-                        @endif
+    <link href="{{ url('assets/css/animate.min.css') }}" rel="stylesheet"/>
 
-                        <form method="post" action="{{ route('signup.store') }}">
-                            @csrf
+    <link href="{{ url('assets/css/paper-dashboard.css') }}" rel="stylesheet"/>
 
-                            <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" name="name" id="name" placeholder="Name" value="{{ old('name') }}" class="form-control border-input">
-                            </div>
+    <link href="{{ url('http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css') }}" rel="stylesheet">
 
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="text" name="email" id="email" placeholder="Email" value="{{ old('email') }}" class="form-control border-input">
-                            </div>
+    <link href='{{ url('https://fonts.googleapis.com/css?family=Muli:400,300') }}' rel='stylesheet' type='text/css'>
 
-                            <div class="form-group">
-                                <label for="address">Address:</label>
-                                <textarea type="text" name="address" id="address" placeholder="Address" class="form-control border-input">{{ old('address') }}</textarea>
-                            </div>
+    <link href="{{ url('assets/css/themify-icons.css') }}" rel="stylesheet">
 
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" name="password" id="password" placeholder="Password" class="form-control border-input">
-                            </div>
+</head>
+<body>
 
-                            <div class="form-group">
+    @include('layouts.navbar')
+
+    <div class="wrapper">
+        <div class="container" style="margin-top: 50px">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Sign Up</strong></h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            @if($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            @if(session('msg'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('msg') }}
+                                </div>
+                            @endif
+
+                            <form method="post" action="{{ route('signup.store') }}">
+                                @csrf
+
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" name="name" id="name" placeholder="Name" value="{{ old('name') }}" class="form-control border-input" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="text" name="email" id="email" placeholder="Email" value="{{ old('email') }}" class="form-control border-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address">Address:</label>
+                                    <textarea type="text" name="address" id="address" placeholder="Address" class="form-control border-input">{{ old('address') }}</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" name="password" id="password" placeholder="Password" class="form-control border-input">
+                                </div>
+
+                                <div class="form-group">
                                     <label for="password_confirmation">Confirm Password:</label>
                                     <input type="password" name="password_confirmation" id="password_confirmation" placeholder="password_confirmation" class="form-control border-input">
                                 </div>
 
-                            <div class="form-group">
-                                <button class="btn btn-primary" type="submit">Sign Up</button>
-                            </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Sign Up</button>
+                                </div>
 
-                        </form>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+</body>
+
+<script src="{{ url('assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+<script src="{{ url('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+</html>

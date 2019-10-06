@@ -15,10 +15,12 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         // Validate
         $request->validate([
-            'name' => 'required||min:5|max:100',
-            'email' => 'required|email',
+            'name' => 'required|min:5|max:100',
+            'address' => 'required|min:5|max:100',
+            'email' => 'required|email|unique:users,email|unique:admin_users,email',
             'password' => 'required|confirmed|min:5',
             
         ]);

@@ -18,15 +18,19 @@ Route::group(['prefix' => 'admin'], function () {
 // User
 
 Route::get('/', function(){
-    return redirect('/login');
+    return redirect('/dashboard');
 });
+
 Route::get('/login', 'SessionController@index')->name('login');
 Route::post('/login', 'SessionController@store')->name('login.store');
-Route::get('/logout','SessionController@logout')->name('logout');
-
 Route::get('/signup', 'RegistrationController@index');
 Route::post('/signup', 'RegistrationController@store')->name('signup.store');
 
-Route::get('/dashboard', 'Dashboard@index');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/logout','SessionController@logout')->name('logout');
+    Route::get('/dashboard', 'Dashboard@index');
+});
+
+
 
 

@@ -15,6 +15,5 @@ class AdminDashboardController extends Controller
     public function index()
     {
         return view('pages.admin_dashboard');
-        // echo Auth::guard('admin')->check();
     }
 }

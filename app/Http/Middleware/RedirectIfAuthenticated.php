@@ -19,14 +19,24 @@ class RedirectIfAuthenticated
     {
         switch($guard){
             case 'admin':
-                if (Auth::guard($guard)->check()) {
+                // Check if the user already logged in
+                // If true then redirect to user dashboard
+                if (auth()->check()) {
+                    return redirect('/');
+                }
+                elseif (Auth::guard($guard)->check()) {
                     return redirect('/admin');
                 }
             break;
 
             default:
-                if (Auth::guard($guard)->check()) {
-                    return redirect('/dashboard');
+                // Check if the admin already logged in
+                // If true then redirect to admin dashboard
+                if (auth()->guard('admin')->check()) {
+                    return redirect('/admin');
+                }
+                elseif (Auth::guard($guard)->check()) {
+                    return redirect('/');
                 }
             break;
         }

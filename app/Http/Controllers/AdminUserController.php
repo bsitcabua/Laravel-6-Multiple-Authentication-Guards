@@ -47,6 +47,6 @@ class AdminUserController extends Controller
         auth()->guard('admin')->logout();
 
         // Redirect
-        return redirect('/admin/login')->with('msg', 'You have been logged out');
+        return redirect('/admin/login')->with('msg', 'You have been logged out successfully');
     }
 }

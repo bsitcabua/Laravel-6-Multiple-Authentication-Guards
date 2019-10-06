@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+    
     public function index()
     {
         return view('pages.user_login');
@@ -36,6 +41,6 @@ class SessionController extends Controller
         auth()->logout();
 
         // Redirect
-        return redirect('/login')->with('msg', 'You have been logged out');
+        return redirect('/login')->with('msg', 'You have been logged out successfully');
     }
 }

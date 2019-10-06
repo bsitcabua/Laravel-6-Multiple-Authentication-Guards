@@ -24,9 +24,13 @@
 
 </head>
 <body>
-
-    @yield('content')
-
+    <div class="wrapper">
+        @include('layouts.sidebar');
+        <div class="main-panel">
+            @yield('content')
+            @include('layouts.footer')
+        </div>
+    </div>
 </body>
 
 <script src="{{ url('assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>

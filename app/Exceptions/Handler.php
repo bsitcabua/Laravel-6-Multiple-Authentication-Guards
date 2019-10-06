@@ -58,11 +58,26 @@ class Handler extends ExceptionHandler
         
         switch ($guard){
             case 'admin':
-                return redirect('/admin/login');
-                break;
+                // Check if the user already logged in
+                // If true then redirect to user dashboard
+                if (auth()->check()) {
+                    return redirect('/');
+                }
+                else{
+                    // Else redirect to admin login
+                    return redirect('/admin/login');
+                }
+            break;
             default:
-                return redirect('/login');
-                break;
+                // Check if the admin already logged in
+                // If true then redirect to admin dashboard
+                if (auth()->guard('admin')->check()) {
+                    return redirect('/admin');
+                }
+                else{
+                    return redirect('/login');
+                }
+            break;
         }
     }
     

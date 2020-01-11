@@ -25,27 +25,21 @@ class AdminUserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        
         $credentials = $request->only('email', 'password');
-
         // Log the user In
-
         if(! Auth::guard('admin')->attempt($credentials)){
             return back()->withErrors([
                 'message' => 'Invalid credentials'
             ])->withInput();
         }
-
         // Redirect
         return redirect('/admin');
-        
     }
 
     public function logout()
     {
         // Destroy Admin Auth
         auth()->guard('admin')->logout();
-
         // Redirect
         return redirect('/admin/login')->with('msg', 'You have been logged out successfully');
     }

@@ -27,8 +27,8 @@
     <div class="wrapper">
         @include('layouts.sidebar');
         <div class="main-panel">
-            @yield('content')
-            @include('layouts.footer')
+            @yield('content');
+            @include('layouts.footer');
         </div>
     </div>
 </body>
